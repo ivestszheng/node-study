@@ -1,7 +1,7 @@
 <!--
  * @Descripttion: 
  * @Date: 2022-07-04 14:08:18
- * @LastEditTime: 2022-07-04 15:00:34
+ * @LastEditTime: 2022-07-07 11:26:01
 -->
 # 包
 
@@ -89,3 +89,22 @@ function htmlUnEscaped(str){
 ```
 
 ### 将不同的功能进行模块化拆分
+
+### 发布包
+在终端执行`npm login`命令，依次输入用户名、密码、邮箱后，即可登录成功
+
+> 运行`npm login`命令前，必须先把**下包的服务器**地址切换为**npm 的官方服务器**，否则会导致发布包失败！
+
+登录成功后终端会显示`Logged in as <YourUsername> on https://registry.npmjs.org/.`，如果地址不是`npm`仓库，代表登录错服务器。
+
+登录后使用进入包的根目录，通过`npm publish`即可发布包。
+
+### 删除已发布的包
+```
+npm unpublish <packageName> --force
+```
+
+> npm unpublish 命令 **只能删除72小时以内发布的包**且**删除后24小时内不能发布同名的包**
+>
+> **不要往npm上发布没有意义的包**
+
