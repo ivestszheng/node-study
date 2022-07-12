@@ -1,7 +1,7 @@
 /*
  * @Descripttion: 
  * @Date: 2022-07-12 10:14:15
- * @LastEditTime: 2022-07-12 15:25:04
+ * @LastEditTime: 2022-07-12 15:50:25
  */
 const mysql = require('mysql');
 
@@ -68,8 +68,33 @@ db.query(sqlStr,[user.username,user.password,user.id],(err,results)=>{
 })
 */
 
+/*
 // 更新用户的便捷方式
-const user = {id:6,username:'aaaa',password:'0000'}
+const user = { id: 6, username: 'aaaa', password: '0000' }
 // 定义 SQL 语句
 const sqlStr = 'UPDATE users SET ? where id=?'
 // 执行 SQL 语句
+db.query(sqlStr, [user, user.id], (err, results) => {
+    if (err) return console.log(err);
+    if (results.affectedRows === 1) console.log('更新数据成功')
+})
+*/
+
+/*
+// 删除数据
+const sqlStr = 'DELETE FROM users WHERE id=?'
+// 如果 SQL 语句中有多个占位符，则必须使用数组为每个占位符指定具体的值
+// 如果 SQL 语句中只有一个占位符，则可以省略数组
+db.query(sqlStr,7,(err,results)=>{
+    if(err) return console.log(err)
+    if(results.affectedRows === 1) return console.log('删除数据成功！');
+})
+*/
+
+// 标记删除（软删除）
+// 使用标记删的形式，来模拟删除的动作
+const sqlStr = 'UPDATE users set status=? where id=?'
+db.query(sqlStr,[1,6],(err,results)=>{
+    if(err) return console.log(err)
+    if(results.affectedRows === 1) return console.log('标记删除数据成功！')
+})
